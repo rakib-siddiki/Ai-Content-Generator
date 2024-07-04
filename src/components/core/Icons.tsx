@@ -1,9 +1,30 @@
-import { LucideProps, Moon, SunMedium, ChevronRight } from 'lucide-react';
+import {
+    LucideProps,
+    Moon,
+    SunMedium,
+    ChevronRight,
+    CircleUser,
+    Home,
+    Menu,
+    Receipt,
+    Package2,
+    Search,
+    Settings,
+    History,
+} from 'lucide-react';
 
 export const Icons = {
     Moon,
     SunMedium,
     ChevronRight,
+    CircleUser,
+    Home,
+    Menu,
+    Receipt,
+    Package2,
+    Search,
+    Settings,
+    History,
     EmptyBox: (props: LucideProps) => (
         <svg
             {...props}
@@ -38,7 +59,7 @@ export const Icons = {
         </svg>
     ),
 
-    Setting: (props: LucideProps) => (
+    Setting2: (props: LucideProps) => (
         <svg
             {...props}
             xmlns='http://www.w3.org/2000/svg'

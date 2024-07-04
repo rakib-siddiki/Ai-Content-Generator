@@ -24,8 +24,7 @@ export const BackgroundShape: React.FC<shapePatternBackgroundProps> = ({
     const maskStyle: React.CSSProperties = fade
         ? {
               maskImage: 'radial-gradient(circle, white 10%, transparent 95%)',
-              WebkitMaskImage:
-                  'radial-gradient(circle, white 10%, transparent 95%)',
+              WebkitMaskImage: 'radial-gradient(circle, white 10%, transparent 95%)',
           }
         : {};
     // https://heropatterns.com/
@@ -38,7 +37,7 @@ export const BackgroundShape: React.FC<shapePatternBackgroundProps> = ({
 
     return (
         <div
-            className={`absolute inset-0 -z-10 h-full w-full ${className}`}
+            className={`absolute inset-0 -z-10 h-full min-h-full w-full ${className}`}
             style={backgroundStyle}
             {...props}
         />

@@ -1,48 +1,34 @@
 'use client';
+
+import * as React from 'react';
+import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
-import { Icons } from './Icons';
 
-export const ThemeSwitcher = ({ className }: { className?: string }) => {
-    const [mounted, setMounted] = useState(false);
-    const { theme, setTheme } = useTheme();
+import { Button } from '@/components/ui/button';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+export function ThemeSwitcher() {
+    const { setTheme } = useTheme();
+
     return (
-        <>
-            {!mounted ? (
-                <button
-                    className={`w-fit duration-200 hover:scale-110 active:scale-100`}
-                >
-                    <span>
-                        <Icons.Moon
-                            className={`${className}stroke-gray-800 size-6 stroke-[1.25px] dark:hidden`}
-                        />
-                        <Icons.SunMedium
-                            className={`${className} hidden size-6 stroke-gray-50 stroke-[1.25px] dark:block`}
-                        />
-                    </span>
-                </button>
-            ) : (
-                <button
-                    className={`w-fit duration-200 hover:scale-110 active:scale-100`}
-                    onClick={() =>
-                        setTheme(theme === 'dark' ? 'light' : 'dark')
-                    }
-                >
-                    {theme === 'light' ? (
-                        <Icons.Moon
-                            className={`${className} size-6 stroke-gray-800 stroke-[1.25px]`}
-                        />
-                    ) : (
-                        <Icons.SunMedium
-                            className={`${className} size-6 stroke-gray-50 stroke-[1.25px]`}
-                        />
-                    )}
-                </button>
-            )}
-        </>
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant='grediant' size='icon' className='rounded-full'>
+                    <SunIcon className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
+                    <MoonIcon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
+                    <span className='sr-only'>Toggle theme</span>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align='end'>
+                <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
     );
-};
+}
