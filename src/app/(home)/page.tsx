@@ -42,7 +42,7 @@ export default function Home() {
                     </div>
 
                     <div className='mx-auto mt-5 max-w-3xl text-center'>
-                        <p className='text-lg font-medium text-gray-600 dark:text-neutral-400'>
+                        <p className='text-lg font-medium text-gray-600 dark:text-neutral-200'>
                             Revolutionize your content creation with our AI-powered app, delivering
                             engaging and high-quality text in seconds.
                         </p>
