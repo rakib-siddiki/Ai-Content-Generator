@@ -8,7 +8,7 @@ import { Icons } from '@/components/core';
 interface IProps extends ITemplates {}
 const TemplateCard: FC<IProps> = ({ title, icon, description }) => {
     return (
-        <article className='h-48 overflow-clip'>
+        <article className='grid h-full grid-cols-subgrid overflow-clip'>
             <Card className='size-full border-violet-100 bg-violet-50/50 shadow backdrop-blur-md dark:border-border dark:bg-card'>
                 <CardHeader className='pb-2'>
                     <CardTitle>{title}</CardTitle>
