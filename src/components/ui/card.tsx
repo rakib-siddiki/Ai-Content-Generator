@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { cn } from '@/lib/utils';
 
 const Card = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
@@ -7,7 +6,10 @@ const Card = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
         <article
             ref={ref}
             className={cn(
-                'rounded-xl border bg-card from-zinc-50 to-slate-50 text-card-foreground shadow hover:bg-gradient-to-t dark:from-zinc-800 dark:to-slate-900 dark:hover:bg-gradient-to-tl',
+                'relative z-10 rounded-xl border bg-card text-card-foreground shadow',
+                'after:absolute after:inset-0 after:-z-10 after:h-full after:w-full after:bg-gradient-to-tl after:opacity-0 after:transition after:duration-500 after:ease-in-out after:content-[""] after:hover:opacity-100',
+                'after:from-violet-100 after:to-violet-50',
+                'dark:to-indigo-800/20 after:dark:from-violet-900/40',
                 className,
             )}
             {...props}

@@ -6,11 +6,10 @@ import { Icons, ThemeSwitcher } from '@/components/core';
 import { SidebarNavMenu, UpgradeCard } from '.';
 import { Search } from '..';
 import { UserButton } from '@clerk/nextjs';
-// import SignedOutButton from './SignedOutButton';
 
 const MobileSidebar = () => {
     return (
-        <header className='bg-zinc/10 flex h-14 items-center gap-4 border-b px-4 backdrop-blur-sm lg:h-[60px] lg:px-6'>
+        <header className='bg-zinc/10 sticky top-0 z-50 flex h-14 items-center gap-4 border-b px-4 backdrop-blur-sm lg:h-[60px] lg:px-6'>
             <Sheet>
                 <SheetTrigger asChild>
                     <Button variant='outline' size='icon' className='shrink-0 md:hidden'>

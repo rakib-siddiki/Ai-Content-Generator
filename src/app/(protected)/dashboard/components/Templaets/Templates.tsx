@@ -1,18 +1,23 @@
 import React from 'react';
-
+import { TemplateCard } from '.';
+import { TEMPLATES_DATA } from '@/app/static/templaets';
+import Link from 'next/link';
 const Templates = () => {
     return (
         <main className='flex flex-1 flex-col gap-3 p-4 lg:gap-6 lg:p-6'>
             <div className='flex items-center'>
                 <h1 className='text-lg font-bold md:text-3xl'>Templates</h1>
             </div>
-            <div
-                className='flex flex-1 items-center justify-center rounded-lg border border-dashed border-primary shadow-sm'
-                x-chunk='dashboard-02-chunk-1'
-            >
-                <div className='flex flex-col items-center gap-1 text-center'>
-                    <h3 className='text-2xl font-bold tracking-tight'>You have no Templates</h3>
-                </div>
+            <div className='grid size-full grid-cols-1 gap-5 rounded-lg border border-dashed border-primary p-5 shadow-sm sm:grid-cols-2 lg:grid-cols-3'>
+                {TEMPLATES_DATA.map((template) => (
+                    <Link
+                        href={`/dashboard/templates/${template.slug}`}
+                        className='block'
+                        key={template.slug}
+                    >
+                        <TemplateCard {...template} />
+                    </Link>
+                ))}
             </div>
         </main>
     );

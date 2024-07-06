@@ -14,6 +14,7 @@ import React from 'react';
 
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_DOMAIN),
+    icons: '/favicon.png',
     title: {
         default: SITE_TITLE_DEFAULT,
         template: SITE_TITLE_TEMPLATE_DEFAULT,
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang='en'>
+        <html lang='en' className='no-scrollbar'>
             <body className={`${FONT_DEFAULT.variable} ${switchThemeDuration}`}>
                 <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
                     <main>{children}</main>
