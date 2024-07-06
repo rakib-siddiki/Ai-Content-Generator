@@ -12,8 +12,8 @@ const SidebarNavMenu = () => {
             key={name}
             href={href}
             className={cn(
-                'mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-sm text-muted-foreground hover:text-foreground',
-                pathname === href && 'bg-muted',
+                'flex items-center gap-4 rounded-xl px-3 py-2 text-sm text-muted-foreground transition hover:text-primary',
+                pathname === href && 'bg-muted text-violet-500',
             )}
         >
             {icon}

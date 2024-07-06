@@ -1,8 +1,11 @@
 import React from 'react';
 import { Templates } from '../components';
-
-const TempletePage = () => {
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+    title: 'Templates',
+};
+const TempletesPage = () => {
     return <Templates />;
 };
 
-export default TempletePage;
+export default TempletesPage;

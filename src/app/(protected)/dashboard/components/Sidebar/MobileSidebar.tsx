@@ -9,7 +9,7 @@ import { UserButton } from '@clerk/nextjs';
 
 const MobileSidebar = () => {
     return (
-        <header className='bg-zinc/10 sticky top-0 z-50 flex h-14 items-center gap-4 border-b px-4 backdrop-blur-sm lg:h-[60px] lg:px-6'>
+        <header className='bg-zinc/10 nav-height sticky top-0 z-50 flex items-center gap-4 border-b px-4 backdrop-blur-sm lg:px-6'>
             <Sheet>
                 <SheetTrigger asChild>
                     <Button variant='outline' size='icon' className='shrink-0 md:hidden'>
@@ -19,7 +19,10 @@ const MobileSidebar = () => {
                 </SheetTrigger>
                 <SheetContent side='left' className='flex flex-col'>
                     <nav className='grid gap-2 text-lg font-medium'>
-                        <Link href='/' className='flex items-center gap-2 text-lg font-semibold'>
+                        <Link
+                            href='/'
+                            className='flex items-center gap-2 px-3 text-lg font-semibold'
+                        >
                             <Icons.Package2 className='h-6 w-6' />
                             <span className='sr-only'>Acme Inc</span>
                             <h1 className='max-xs:text-base'>Ai Content Generator</h1>

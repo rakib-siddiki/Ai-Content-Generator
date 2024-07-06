@@ -53,10 +53,20 @@
     * {
         @apply border-border;
     }
+
+    .nav-height {
+        @apply h-14 lg:h-[60px];
+    }
+
+    .position-without-header {
+        @apply fixed top-14 lg:top-[60px];
+    }
+
     body {
         @apply bg-background font-roboto text-foreground;
     }
 }
+
 @layer utilities {
     /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
@@ -70,4 +80,31 @@
         scrollbar-width: none;
         /* Firefox */
     }
+}
+
+/* Target the scrollbar track */
+::-webkit-scrollbar {
+    cursor: pointer;
+    width: 8px;
+    /* Width of the scrollbar */
+}
+
+/* Target the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+    background: hsla(232, 73%, 65%, 1);
+
+    background: linear-gradient(90deg, hsla(232, 73%, 65%, 1) 0%, hsla(279, 33%, 48%, 1) 100%);
+
+    background: -moz-linear-gradient(90deg, hsla(232, 73%, 65%, 1) 0%, hsla(279, 33%, 48%, 1) 100%);
+
+    background: -webkit-linear-gradient(
+        90deg,
+        hsla(232, 73%, 65%, 1) 0%,
+        hsla(279, 33%, 48%, 1) 100%
+    );
+
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#6274E7", endColorstr="#8752A3", GradientType=1);
+    /* Color of the thumb */
+    border-radius: 5px;
+    /* Rounded corners */
 }

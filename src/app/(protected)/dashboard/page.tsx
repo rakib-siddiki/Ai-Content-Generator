@@ -1,7 +1,7 @@
 import { SITE_TITLE_TEMPLATE_DEFAULT } from '@/configs';
 import { Metadata } from 'next';
 import React from 'react';
-import { DashboardContainer } from './components';
+import { Templates } from './components';
 export const metadata: Metadata = {
     title: {
         default: 'Dashboard',
@@ -9,6 +9,10 @@ export const metadata: Metadata = {
     },
 };
 const DashboardPage = () => {
-    return <DashboardContainer />;
+    return (
+        <main>
+            <Templates />
+        </main>
+    );
 };
 export default DashboardPage;

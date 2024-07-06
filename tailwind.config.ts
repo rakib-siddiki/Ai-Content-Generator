@@ -84,10 +84,6 @@ const config = {
                     from: { height: '0' },
                     to: { height: 'var(--radix-accordion-content-height)' },
                 },
-                'slide-in-once': {
-                    '0%': { left: '-100%', opacity: '25%' },
-                    '100%': { left: '100%', opacity: '100%' },
-                },
                 'accordion-up': {
                     from: { height: 'var(--radix-accordion-content-height)' },
                     to: { height: '0' },
