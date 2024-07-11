@@ -10,6 +10,7 @@ export interface ITemplates {
               label: string;
               type: string;
               name: string;
+              rquired?: boolean;
               options?: undefined;
           }
         | {
@@ -17,6 +18,7 @@ export interface ITemplates {
               type: string;
               options: string[];
               name: string;
+              rquired?: boolean;
           }
     )[];
 }
@@ -28,15 +30,16 @@ export const TEMPLATES_DATA: ITemplates[] = [
         category: 'blog',
         icon: '/templateIcons/blogTitle.png',
         slug: 'generate-blog-title',
-        prompt: 'Give me 5 blog topic ideas in bullet-wise format based on the given niche & outline and provide the result in Rich text editor format',
+        prompt: 'Give me 5 blog topic ideas in bullet-wise format based on the given niche & outline. Provide the result with a heading at the top in Rich text editor format.',
         fromFields: [
             {
-                label: 'Enter your blog niche',
+                label: 'Tell us the main topic of your blog.',
                 type: 'input',
-                name: 'niche',
+                name: 'topic',
+                rquired: true,
             },
             {
-                label: 'Enter blog outline',
+                label: 'Give us an outline of your blog post.',
                 type: 'textarea',
                 name: 'outline',
             },
@@ -48,12 +51,13 @@ export const TEMPLATES_DATA: ITemplates[] = [
         category: 'SEO',
         icon: '/templateIcons/seo.png',
         slug: 'seo-keyword-suggestions',
-        prompt: 'Provide a list of 10 SEO keywords based on the given content and target audience, and display the result in Rich text editor format',
+        prompt: 'Provide a list of 10 SEO keywords based on the given content and target audience. Provide the result with a heading at the top in Rich text editor format.',
         fromFields: [
             {
                 label: 'Enter your content topic',
                 type: 'input',
                 name: 'topic',
+                rquired: true,
             },
             {
                 label: 'Enter target audience',
@@ -69,18 +73,20 @@ export const TEMPLATES_DATA: ITemplates[] = [
         category: 'social media',
         icon: '/templateIcons/socialMedia.png',
         slug: 'social-media-post-ideas',
-        prompt: 'Generate 5 social media post ideas based on the given campaign goals and preferred platform, and provide the result in Rich text editor format',
+        prompt: 'Generate 5 social media post ideas based on the given campaign goals and preferred platform. Provide the result with a heading at the top in Rich text editor format.',
         fromFields: [
             {
                 label: 'Enter campaign goals',
                 type: 'textarea',
                 name: 'goals',
+                rquired: true,
             },
             {
                 label: 'Select preferred platform',
                 type: 'select',
                 options: ['Facebook', 'Instagram', 'Twitter', 'LinkedIn'],
                 name: 'platform',
+                rquired: true,
             },
         ],
     },
@@ -91,12 +97,13 @@ export const TEMPLATES_DATA: ITemplates[] = [
         category: 'email marketing',
         icon: '/templateIcons/email.png',
         slug: 'email-subject-line-generator',
-        prompt: 'Provide 5 compelling email subject lines based on the given email content and target audience, and display the result in Rich text editor format',
+        prompt: 'Provide 5 compelling email subject lines based on the given email content and target audience. Provide the result with a heading at the top in Rich text editor format.',
         fromFields: [
             {
                 label: 'Enter email content summary',
                 type: 'textarea',
                 name: 'contentSummary',
+                rquired: true,
             },
             {
                 label: 'Enter target audience',
@@ -112,17 +119,19 @@ export const TEMPLATES_DATA: ITemplates[] = [
         category: 'e-commerce',
         icon: '/templateIcons/product-description.png',
         slug: 'product-description-generator',
-        prompt: 'Generate 3 engaging product descriptions based on the given product details and target market, and provide the result in Rich text editor format',
+        prompt: 'Generate 3 engaging product descriptions based on the given product details and target market. Provide the result with a heading at the top in Rich text editor format.',
         fromFields: [
             {
                 label: 'Enter product name',
                 type: 'input',
                 name: 'productName',
+                rquired: true,
             },
             {
                 label: 'Enter product features',
                 type: 'textarea',
                 name: 'features',
+                rquired: true,
             },
             {
                 label: 'Enter target market',
@@ -138,12 +147,13 @@ export const TEMPLATES_DATA: ITemplates[] = [
         category: 'video content',
         icon: '/templateIcons/video.png',
         slug: 'video-script-outline-generator',
-        prompt: 'Provide an outline for a video script based on the given video topic and goals, and display the result in Rich text editor format',
+        prompt: 'Provide an outline for a video script based on the given video topic and goals. Provide the result with a heading at the top in Rich text editor format.',
         fromFields: [
             {
                 label: 'Enter video topic',
                 type: 'input',
                 name: 'topic',
+                rquired: true,
             },
             {
                 label: 'Enter video goals',
@@ -158,12 +168,13 @@ export const TEMPLATES_DATA: ITemplates[] = [
         category: 'programming',
         icon: '/templateIcons/codeBug.png',
         slug: 'code-bug-detector',
-        prompt: 'Detect bugs in the provided code and highlight the issues in Rich text editor format',
+        prompt: 'Detect bugs in the provided code and highlight the issues. Provide the result with a heading at the top in Rich text editor format.',
         fromFields: [
             {
                 label: 'Enter your code',
                 type: 'textarea',
                 name: 'code',
+                rquired: true,
             },
         ],
     },
@@ -173,12 +184,13 @@ export const TEMPLATES_DATA: ITemplates[] = [
         category: 'programming',
         icon: '/templateIcons/codeExplain.png',
         slug: 'explain-code',
-        prompt: 'Explain the functionality of the provided code snippet in detail and display the result in Rich text editor format',
+        prompt: 'Explain the functionality of the provided code snippet in detail. Provide the result with a heading at the top in Rich text editor format.',
         fromFields: [
             {
                 label: 'Enter your code snippet',
                 type: 'textarea',
                 name: 'codeSnippet',
+                rquired: true,
             },
         ],
     },
@@ -188,18 +200,20 @@ export const TEMPLATES_DATA: ITemplates[] = [
         category: 'programming',
         icon: '/templateIcons/writeCode.png',
         slug: 'write-code',
-        prompt: 'Generate code based on the given requirements and programming language, and display the result in Rich text editor format',
+        prompt: 'Generate code based on the given requirements and programming language. Provide the result with a heading at the top in Rich text editor format.',
         fromFields: [
             {
                 label: 'Enter your requirements',
                 type: 'textarea',
                 name: 'requirements',
+                rquired: true,
             },
             {
                 label: 'Select programming language',
                 type: 'select',
                 options: ['JavaScript', 'Python', 'Java', 'C#', 'C++'],
                 name: 'language',
+                rquired: true,
             },
         ],
     },
@@ -209,12 +223,13 @@ export const TEMPLATES_DATA: ITemplates[] = [
         category: 'writing',
         icon: '/templateIcons/grammerCheck.png',
         slug: 'english-grammar-check',
-        prompt: 'Check and correct grammar in the provided English text and display the corrected text in Rich text editor format',
+        prompt: 'Check and correct grammar in the provided English text, explain the mistakes in detail, and highlight the main portions for easy understanding. Provide the result with a heading at the top in Rich text editor format.',
         fromFields: [
             {
                 label: 'Enter your text',
                 type: 'textarea',
                 name: 'text',
+                rquired: true,
             },
         ],
     },

@@ -3,6 +3,7 @@ import React from 'react';
 import { ClerkProvider } from '@clerk/nextjs';
 import { MobileSidebar, Sidebar } from './dashboard/components';
 import OnChangeProvider from '@/providers/serch-result-Provider';
+import { Toaster } from '@/components/ui/sonner';
 
 const PublicLayout = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -18,6 +19,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
                         </OnChangeProvider>
                     </section>
                 </section>
+                <Toaster />
             </ClerkProvider>
         </section>
     );

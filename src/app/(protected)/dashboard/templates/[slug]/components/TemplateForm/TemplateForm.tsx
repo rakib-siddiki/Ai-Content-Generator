@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 'use client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import {
     Form,
@@ -23,38 +21,26 @@ import { Input } from '@/components/ui/input';
 import { ITemplates } from '@/app/static/templaets';
 import { FC } from 'react';
 import { FormHeader } from '.';
-import { TTemplateFromSchema, createSchema } from '../../schema';
 import { Textarea } from '@/components/ui/textarea';
+import { Icons } from '@/components/core';
+import { useTemplateForm } from '@/app/(protected)/dashboard/hooks';
 
-interface IProps extends ITemplates {}
+interface IProps extends ITemplates {
+    getOutput: (value: string) => void;
+}
 
-const TemplateForm: FC<IProps> = (template) => {
-    const { fromFields } = template;
-    const dynamicSchema = createSchema(fromFields);
-    const form = useForm<TTemplateFromSchema>({
-        resolver: zodResolver(dynamicSchema),
-        defaultValues: fromFields.reduce(
-            (acc, field) => {
-                acc[field.name] = '';
-                return acc;
-            },
-            {} as Record<string, string>,
-        ),
-    });
-    function onSubmit(values: TTemplateFromSchema) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values);
-    }
+const TemplateForm: FC<IProps> = (props) => {
+    const { handleSubmit, form, control, isSubmitting, onSubmit, fromFields } =
+        useTemplateForm(props);
     return (
-        <section className='mx-3 max-h-[80%] overflow-y-auto rounded-xl bg-zinc-200/50 p-5 shadow-xl backdrop-blur-md dark:bg-card'>
-            <FormHeader {...template} />
+        <section className='overflow-y-auto rounded-xl bg-gray-900/5 p-5 shadow-xl backdrop-blur-sm dark:bg-card'>
+            <FormHeader {...props} />
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+                <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
                     {fromFields.map((field) => (
                         <FormField
                             key={field.name}
-                            control={form.control}
+                            control={control}
                             name={field.name}
                             render={({ field: formField }) => (
                                 <FormItem>
@@ -104,8 +90,19 @@ const TemplateForm: FC<IProps> = (template) => {
                             )}
                         />
                     ))}
-                    <Button type='submit' variant='grediant' className='w-full'>
-                        Submit
+                    <Button
+                        type='submit'
+                        variant='grediant'
+                        className='w-full'
+                        disabled={isSubmitting}
+                    >
+                        {isSubmitting ? (
+                            <>
+                                <Icons.Loader className='mr-1 size-4 animate-spin' /> Generating...
+                            </>
+                        ) : (
+                            'Generate'
+                        )}
                     </Button>
                 </form>
             </Form>

@@ -12,6 +12,7 @@ import {
     Settings,
     History,
     Loader,
+    Copy,
 } from 'lucide-react';
 
 export const Icons = {
@@ -27,6 +28,7 @@ export const Icons = {
     Settings,
     History,
     Loader,
+    Copy,
     EmptyBox: (props: LucideProps) => (
         <svg
             {...props}
