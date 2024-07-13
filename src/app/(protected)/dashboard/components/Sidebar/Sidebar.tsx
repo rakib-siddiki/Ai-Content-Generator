@@ -1,7 +1,7 @@
 import { Icons } from '@/components/core';
 import Link from 'next/link';
 import React from 'react';
-import UpgradeCard from './UpgradeCard';
+import { UpgradeCard } from '.';
 import { SidebarNavMenu } from '.';
 
 const Sidebar = () => {

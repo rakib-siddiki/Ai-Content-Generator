@@ -27,7 +27,7 @@ const TemplateContainer: FC<IProps> = ({ slug }) => {
         setAiOutput(output);
     };
     return (
-        <main className='xl:position-without-header p-4 xl:w-4/5'>
+        <main className='p-4'>
             <Link href='/dashboard' className='m-3 inline-block'>
                 <Button variant={'grediant'} className='inline-flex items-center gap-1 pl-2'>
                     <Icons.ChevronRight className='h-4 w-4 rotate-180' /> Back
@@ -37,7 +37,7 @@ const TemplateContainer: FC<IProps> = ({ slug }) => {
                 <div className='w-full lg:w-2/5'>
                     <TemplateForm getOutput={handleOutput} {...template} />
                 </div>
-                <div className='w-full lg:w-3/5'>
+                <div className='size-full w-full shadow-lg lg:w-3/5'>
                     <OutputSection aiOutput={aiOutput} />
                 </div>
             </div>

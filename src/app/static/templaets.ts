@@ -10,7 +10,7 @@ export interface ITemplates {
               label: string;
               type: string;
               name: string;
-              rquired?: boolean;
+              required?: boolean;
               options?: undefined;
           }
         | {
@@ -18,7 +18,7 @@ export interface ITemplates {
               type: string;
               options: string[];
               name: string;
-              rquired?: boolean;
+              required?: boolean;
           }
     )[];
 }
@@ -36,10 +36,10 @@ export const TEMPLATES_DATA: ITemplates[] = [
                 label: 'Tell us the main topic of your blog.',
                 type: 'input',
                 name: 'topic',
-                rquired: true,
+                required: true,
             },
             {
-                label: 'Give us an outline of your blog post.',
+                label: 'Give us an outline of your blog post. (optional)',
                 type: 'textarea',
                 name: 'outline',
             },
@@ -57,10 +57,10 @@ export const TEMPLATES_DATA: ITemplates[] = [
                 label: 'Enter your content topic',
                 type: 'input',
                 name: 'topic',
-                rquired: true,
+                required: true,
             },
             {
-                label: 'Enter target audience',
+                label: 'Enter target audience (optional)',
                 type: 'input',
                 name: 'audience',
             },
@@ -79,14 +79,14 @@ export const TEMPLATES_DATA: ITemplates[] = [
                 label: 'Enter campaign goals',
                 type: 'textarea',
                 name: 'goals',
-                rquired: true,
+                required: true,
             },
             {
                 label: 'Select preferred platform',
                 type: 'select',
                 options: ['Facebook', 'Instagram', 'Twitter', 'LinkedIn'],
                 name: 'platform',
-                rquired: true,
+                required: true,
             },
         ],
     },
@@ -103,10 +103,10 @@ export const TEMPLATES_DATA: ITemplates[] = [
                 label: 'Enter email content summary',
                 type: 'textarea',
                 name: 'contentSummary',
-                rquired: true,
+                required: true,
             },
             {
-                label: 'Enter target audience',
+                label: 'Enter target audience (optional)',
                 type: 'input',
                 name: 'audience',
             },
@@ -125,16 +125,16 @@ export const TEMPLATES_DATA: ITemplates[] = [
                 label: 'Enter product name',
                 type: 'input',
                 name: 'productName',
-                rquired: true,
+                required: true,
             },
             {
                 label: 'Enter product features',
                 type: 'textarea',
                 name: 'features',
-                rquired: true,
+                required: true,
             },
             {
-                label: 'Enter target market',
+                label: 'Enter target market (optional)',
                 type: 'input',
                 name: 'market',
             },
@@ -153,10 +153,10 @@ export const TEMPLATES_DATA: ITemplates[] = [
                 label: 'Enter video topic',
                 type: 'input',
                 name: 'topic',
-                rquired: true,
+                required: true,
             },
             {
-                label: 'Enter video goals',
+                label: 'Enter video goals (optional)',
                 type: 'textarea',
                 name: 'goals',
             },
@@ -174,7 +174,7 @@ export const TEMPLATES_DATA: ITemplates[] = [
                 label: 'Enter your code',
                 type: 'textarea',
                 name: 'code',
-                rquired: true,
+                required: true,
             },
         ],
     },
@@ -190,7 +190,7 @@ export const TEMPLATES_DATA: ITemplates[] = [
                 label: 'Enter your code snippet',
                 type: 'textarea',
                 name: 'codeSnippet',
-                rquired: true,
+                required: true,
             },
         ],
     },
@@ -206,14 +206,14 @@ export const TEMPLATES_DATA: ITemplates[] = [
                 label: 'Enter your requirements',
                 type: 'textarea',
                 name: 'requirements',
-                rquired: true,
+                required: true,
             },
             {
                 label: 'Select programming language',
                 type: 'select',
                 options: ['JavaScript', 'Python', 'Java', 'C#', 'C++'],
                 name: 'language',
-                rquired: true,
+                required: true,
             },
         ],
     },
@@ -229,7 +229,7 @@ export const TEMPLATES_DATA: ITemplates[] = [
                 label: 'Enter your text',
                 type: 'textarea',
                 name: 'text',
-                rquired: true,
+                required: true,
             },
         ],
     },

@@ -8,7 +8,7 @@ export const SIDEBAR_NAV_MENUS = [
     },
     {
         name: 'History',
-        href: '/history',
+        href: '/dashboard/history',
         icon: <Icons.History />,
     },
     {
