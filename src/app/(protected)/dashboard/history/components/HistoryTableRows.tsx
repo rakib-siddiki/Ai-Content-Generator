@@ -45,7 +45,7 @@ const HistoryTableRows: FC<IProps> = ({ data }) => {
                                     width='64'
                                 />
                             </TableCell>
-                            <TableCell className='font-medium'>{title}</TableCell>
+                            <TableCell className='min-w-40 font-medium'>{title}</TableCell>
                             <TableCell>
                                 <Badge variant='outline' className='max-w-xs'>
                                     {form_data}

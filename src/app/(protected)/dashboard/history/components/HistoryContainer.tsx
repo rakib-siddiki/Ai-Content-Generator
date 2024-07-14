@@ -1,14 +1,23 @@
 import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { getData } from '@/app/action/aiOutput';
 import { HistoryTableRows } from '.';
+import { SelectAIOutput } from '@/db/schema';
+type IData = SelectAIOutput[] | { error: string };
 const HistoryContainer = async () => {
-    const data = await getData();
+    const data = (await getData()) as IData;
+    if ('error' in data) {
+        return (
+            <h1 className='grid place-items-center text-3xl font-bold text-red-500'>
+                {data.error}
+            </h1>
+        );
+    }
     return (
         <section className='p-4 shadow-md'>
             <div className='rounded backdrop-blur-sm'>
                 <Table className='w-full'>
                     <TableHeader>
-                        <TableRow>
+                        <TableRow className='*:min-w-32'>
                             <TableHead className='hidden w-[100px] sm:table-cell'>
                                 <span className='sr-only'>Image</span>
                             </TableHead>

@@ -1,16 +1,25 @@
 import React, { FC } from 'react';
 interface IProps {
-    data: {
-        id: string;
-        form_data: string;
-        ai_response: string;
-        template_slug: string;
-        created_by: string;
-        created_at: string;
-        updated_at: string | null;
-    }[];
+    data:
+        | {
+              id: string;
+              form_data: string;
+              ai_response: string;
+              template_slug: string;
+              created_by: string;
+              created_at: string;
+              updated_at: string | null;
+          }[]
+        | { error: string };
 }
 const UsageTrack: FC<IProps> = ({ data }) => {
+    if ('error' in data) {
+        return (
+            <h1 className='items-center text-center text-xl font-bold text-red-500'>
+                {data.error}
+            </h1>
+        );
+    }
     const totalUsage = data.reduce((acc, item) => acc + item.ai_response.length, 0);
     const maxWords = 10000;
     return (

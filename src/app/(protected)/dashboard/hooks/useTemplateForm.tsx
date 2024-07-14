@@ -32,6 +32,15 @@ const useTemplateForm = (template: IProps) => {
         const formData = JSON.stringify(values);
         const finalPrompt = `${formData},${currentPrompt}`;
         const aiResponse = await generateAiResponse(finalPrompt);
+        if (typeof aiResponse === 'object' && 'error' in aiResponse) {
+            toast(aiResponse.error, {
+                style: {
+                    background: 'red',
+                    color: 'white',
+                },
+            });
+            return;
+        }
 
         const data = {
             ai_response: aiResponse,
