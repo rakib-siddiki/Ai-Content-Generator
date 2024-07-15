@@ -1,26 +1,44 @@
 'use client';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { generateAiResponse } from '@/app/action/generateAiResponse';
-import { saveAiRespone } from '@/app/action/aiRespone';
-import { TTemplateFromSchema, createSchema } from '../templates/[slug]/schema';
-import { ITemplates } from '@/app/static/templaets';
 import { toast } from 'sonner';
+import { generateAiResponse } from '@/app/action/generateAiResponse';
+import { ITemplates } from '@/app/static/templaets';
+import { createSchema, TTemplateFromSchema } from '../templates/[slug]/schema';
+
 interface IProps extends ITemplates {
     getOutput: (value: string) => void;
+    storedFormData?: string;
+    savedAiResponse?: string;
 }
-const useTemplateForm = (template: IProps) => {
-    const { fromFields, getOutput, slug, prompt } = template;
+const useTemplateForm = (props: IProps) => {
+    const { fromFields, getOutput, slug, prompt, storedFormData, savedAiResponse } = props;
+    const [aiResponeData, setAiResponeData] = useState({
+        ai_response: savedAiResponse ?? '',
+        form_data: storedFormData ?? '',
+        template_slug: slug ?? '',
+    });
+
     const dynamicSchema = createSchema(fromFields);
+
+    const storedFormDataJson =
+        !!storedFormData && (JSON.parse(storedFormData) as ITemplates['fromFields']);
+
+    const dynamicFields = fromFields.reduce(
+        (acc, field) => {
+            acc[field.name] = '';
+            return acc;
+        },
+        {} as Record<string, string>,
+    );
+
+    const defaultValues = storedFormDataJson ? storedFormDataJson : dynamicFields;
+
     const form = useForm<TTemplateFromSchema>({
         resolver: zodResolver(dynamicSchema),
-        defaultValues: fromFields.reduce(
-            (acc, field) => {
-                acc[field.name] = '';
-                return acc;
-            },
-            {} as Record<string, string>,
-        ),
+        defaultValues,
     });
     const {
         handleSubmit,
@@ -28,38 +46,35 @@ const useTemplateForm = (template: IProps) => {
         formState: { isSubmitting },
     } = form;
     const onSubmit = async (values: TTemplateFromSchema) => {
-        const currentPrompt = prompt;
-        const formData = JSON.stringify(values);
-        const finalPrompt = `${formData},${currentPrompt}`;
-        const aiResponse = await generateAiResponse(finalPrompt);
-        if (typeof aiResponse === 'object' && 'error' in aiResponse) {
-            toast(aiResponse.error, {
-                style: {
-                    background: 'red',
-                    color: 'white',
-                },
-            });
-            return;
-        }
+        try {
+            const currentPrompt = prompt;
+            const formData = JSON.stringify(values);
+            const finalPrompt = `${formData},${currentPrompt}`;
+            const aiResponse = await generateAiResponse(finalPrompt);
+            if (typeof aiResponse === 'object' && 'error' in aiResponse) {
+                toast(aiResponse.error, {
+                    style: {
+                        background: 'red',
+                        color: 'white',
+                    },
+                });
+                return;
+            }
 
-        const data = {
-            ai_response: aiResponse,
-            form_data: formData,
-            template_slug: slug,
-        };
-        const savedData = await saveAiRespone(data);
-        if (savedData && 'command' in savedData && savedData.command === 'INSERT') {
-            toast('AI Response saved successfully', {
-                style: {
-                    background: 'green',
-                    color: 'white',
-                },
+            setAiResponeData({
+                ai_response: aiResponse,
+                form_data: formData,
+                template_slug: slug,
             });
-        }
 
-        getOutput(aiResponse);
+            getOutput(aiResponse);
+        } catch (error) {
+            return {
+                error: 'An error occurred while generating AI response',
+            };
+        }
     };
-    return { form, handleSubmit, control, onSubmit, isSubmitting, fromFields };
+    return { form, handleSubmit, control, onSubmit, isSubmitting, fromFields, aiResponeData };
 };
 
 export default useTemplateForm;

@@ -3,6 +3,7 @@
 import { db } from '@/db';
 import { ai_output } from '@/db/schema';
 import { getUser } from './getUser';
+
 type TData = {
     ai_response:
         | string
@@ -20,9 +21,7 @@ export const saveAiRespone = async (data: TData) => {
         }
         const { primaryEmailAddress } = await getUser();
         const user = primaryEmailAddress?.emailAddress;
-        if (!user) {
-            throw new Error('No user found');
-        }
+        if (!user) return { error: 'Something went wrong. Please try again later.' };
         const res = await db.insert(ai_output).values({
             ai_response,
             form_data,

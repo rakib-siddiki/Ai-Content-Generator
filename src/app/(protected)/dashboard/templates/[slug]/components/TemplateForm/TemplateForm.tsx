@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 'use client';
+
+import { FC } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import {
     Form,
@@ -9,6 +12,7 @@ import {
     FormLabel,
     FormMessage,
 } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
     Select,
     SelectContent,
@@ -17,24 +21,26 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import { Input } from '@/components/ui/input';
-import { ITemplates } from '@/app/static/templaets';
-import { FC } from 'react';
-import { FormHeader } from '.';
 import { Textarea } from '@/components/ui/textarea';
 import { Icons } from '@/components/core';
-import { useTemplateForm } from '@/app/(protected)/dashboard/hooks';
+import { ITemplates } from '@/app/static/templaets';
+import { FormHeader } from '.';
 
-interface IProps extends ITemplates {
-    getOutput: (value: string) => void;
-}
+type FromType = {
+    fromFields: ITemplates['fromFields'];
+    handleSubmit: ReturnType<typeof useForm>['handleSubmit'];
+    form: ReturnType<typeof useForm>;
+    isSubmitting: boolean;
+    onSubmit: SubmitHandler<FieldValues>;
+    control: ReturnType<typeof useForm>['control'];
+};
+interface IProps extends FromType, ITemplates {}
 
 const TemplateForm: FC<IProps> = (props) => {
-    const { handleSubmit, form, control, isSubmitting, onSubmit, fromFields } =
-        useTemplateForm(props);
+    const { handleSubmit, form, control, isSubmitting, onSubmit, fromFields, ...rest } = props;
     return (
         <section className='overflow-y-auto rounded-xl bg-gray-900/5 p-5 shadow-xl backdrop-blur-sm dark:bg-card'>
-            <FormHeader {...props} />
+            <FormHeader fromFields={fromFields} {...rest} />
             <Form {...form}>
                 <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
                     {fromFields.map((field) => (

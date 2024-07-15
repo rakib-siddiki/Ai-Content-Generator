@@ -1,14 +1,33 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 'use client';
-import { useEditor } from '@/app/(protected)/dashboard/hooks';
+
 import { FC, RefObject } from 'react';
+import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/core';
+import { useEditor } from '@/app/(protected)/dashboard/hooks';
+
 interface IProps {
     aiOutput: string;
+    handleSaveData: (data?: string) => Promise<void>;
+    isSaveing: boolean;
 }
-const OutputSection: FC<IProps> = ({ aiOutput }) => {
-    const { editorRef } = useEditor(aiOutput);
+const OutputSection: FC<IProps> = ({ aiOutput, handleSaveData, isSaveing }) => {
+    const { editorRef, isEditedContent } = useEditor(aiOutput);
+
     return (
         <div className='rounded-xl bg-gray-900/5 p-5 shadow-xl backdrop-blur-sm dark:bg-card'>
-            <h2 className='mb-3 text-lg font-medium'>Your Result</h2>
+            <div className='flex justify-between items-center mb-3'>
+                <h2 className=' text-lg font-medium'>Your Result</h2>
+                <Button onClick={() => handleSaveData(isEditedContent)}>
+                    {isSaveing ? (
+                        <>
+                            <Icons.Loader className='mr-1 size-4 animate-spin' /> Saveing...
+                        </>
+                    ) : (
+                        'Save'
+                    )}
+                </Button>
+            </div>
             <div ref={editorRef as RefObject<HTMLDivElement>} />
         </div>
     );

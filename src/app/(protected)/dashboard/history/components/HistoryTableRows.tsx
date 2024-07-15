@@ -1,10 +1,12 @@
 'use client';
-import { SelectAIOutput } from '@/db/schema';
-import React, { FC, useMemo } from 'react';
-import { TableCell, TableRow } from '@/components/ui/table';
-import Image from 'next/image';
-import { MoreHorizontal } from 'lucide-react';
 
+import { SelectAIOutput } from '@/db/schema';
+import { MoreHorizontal } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { FC, useMemo } from 'react';
+import { toast } from 'sonner';
+import { formatDate } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,10 +16,10 @@ import {
     DropdownMenuLabel,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { formatDate } from '@/lib/utils';
-import { TEMPLATES_DATA } from '@/app/static/templaets';
+import { TableCell, TableRow } from '@/components/ui/table';
 import { deleteData } from '@/app/action/aiOutput';
-import { toast } from 'sonner';
+import { TEMPLATES_DATA } from '@/app/static/templaets';
+
 interface IProps {
     data: SelectAIOutput[];
 }
@@ -65,7 +67,16 @@ const HistoryTableRows: FC<IProps> = ({ data }) => {
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent align='end'>
                                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                        <Link
+                                            href={`/dashboard/history/${id}`}
+                                            className='inline-block w-full'
+                                        >
+                                            <DropdownMenuItem className='cursor-pointer'>
+                                                Edit
+                                            </DropdownMenuItem>
+                                        </Link>
                                         <DropdownMenuItem
+                                            className='cursor-pointer'
                                             onClick={() => void handleDelete(id as string)}
                                         >
                                             Delete

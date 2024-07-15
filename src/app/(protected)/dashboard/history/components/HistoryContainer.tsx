@@ -1,7 +1,9 @@
+import { SelectAIOutput } from '@/db/schema';
 import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Error } from '@/components/core/Error';
 import { getData } from '@/app/action/aiOutput';
 import { HistoryTableRows } from '.';
-import { SelectAIOutput } from '@/db/schema';
+
 type IData = SelectAIOutput[] | { error: string };
 const HistoryContainer = async () => {
     const data = (await getData()) as IData;
@@ -11,6 +13,8 @@ const HistoryContainer = async () => {
                 {data.error}
             </h1>
         );
+    } else if (!data.length) {
+        return <Error error='There is no data to show' className='text-violet-500' />;
     }
     return (
         <section className='p-4 shadow-md'>

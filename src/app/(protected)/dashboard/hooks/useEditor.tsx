@@ -1,6 +1,7 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+
 import { useTheme } from 'next-themes';
+import { useEffect, useRef, useState } from 'react';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { type Editor } from '@toast-ui/editor';
@@ -10,7 +11,7 @@ const useEditor = (value: string) => {
     const editorRef = useRef<Editor | null>(null);
     const [editorInstance, setEditorInstance] = useState<Editor | null>(null);
     const [editorTheme, setEditorTheme] = useState<'light' | 'dark'>('light');
-
+    const [isEditedContent, setIsEditedContent] = useState(value);
     useEffect(() => {
         setEditorTheme(theme === 'dark' ? 'dark' : 'light');
     }, [theme]);
@@ -26,18 +27,23 @@ const useEditor = (value: string) => {
                 height: '400px',
                 useCommandShortcut: true,
             });
+            instance.on('change', () => {
+                const markdown = instance.getMarkdown();
+                setIsEditedContent(markdown ?? '');
+            });
             setEditorInstance(instance);
         };
         void initializeEditor();
     }, [editorTheme]);
 
     useEffect(() => {
-        if (editorInstance && typeof editorInstance.getMarkdown === 'function') {
-            editorInstance.setMarkdown(value);
+        if (editorInstance && typeof editorInstance.setMarkdown === 'function') {
+            editorInstance.setMarkdown(isEditedContent);
         }
-    }, [value, editorInstance]);
+    }, [isEditedContent, editorInstance, value]);
     return {
         editorRef,
+        isEditedContent,
     };
 };
 
