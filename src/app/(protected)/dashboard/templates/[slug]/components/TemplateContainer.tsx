@@ -22,8 +22,9 @@ interface IProps {
     slug: string;
     savedAiResponse?: string;
     storedFormData?: string;
+    isEditing?: boolean;
 }
-const TemplateContainer: FC<IProps> = ({ slug, savedAiResponse, storedFormData }) => {
+const TemplateContainer: FC<IProps> = ({ slug, savedAiResponse, storedFormData, isEditing }) => {
     const [aiOutput, setAiOutput] = useState<string>(savedAiResponse ?? '');
     const template = TEMPLATES_DATA.find((template) => {
         return template.slug === slug;
@@ -39,7 +40,7 @@ const TemplateContainer: FC<IProps> = ({ slug, savedAiResponse, storedFormData }
         storedFormData,
         savedAiResponse: aiOutput,
     });
-    const { handleSaveData, isSaving } = useSaveToDB({ aiResponseData });
+    const { handleSaveData, isSaving } = useSaveToDB({ aiResponseData, isEditing });
 
     return (
         <main className='p-4'>

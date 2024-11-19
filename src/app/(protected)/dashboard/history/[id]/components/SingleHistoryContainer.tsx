@@ -19,6 +19,7 @@ const SingleHistoryContainer: FC<IProps> = ({ data }) => {
                 slug={data?.template_slug}
                 savedAiResponse={data?.ai_response}
                 storedFormData={data?.form_data}
+                isEditing
             />
         </>
     );
