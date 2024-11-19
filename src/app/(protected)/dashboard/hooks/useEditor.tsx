@@ -30,32 +30,33 @@ const useEditor = (value: string) => {
     useEffect(() => {
         setIsEditedContent(value);
     }, [value]);
-
+    // Lazy-load the editor to avoid blocking the main thread in production
     useEffect(() => {
-        let instance: Editor | null = null;
-        const initializeEditor = async () => {
-            const { Editor } = await import('@toast-ui/editor');
-            instance = new Editor({
-                el: editorRef?.current as unknown as HTMLElement,
-                initialValue: isEditedContent || 'Your result will appear here',
-                initialEditType: 'wysiwyg',
-                theme: editorTheme,
-                height: '400px',
-                useCommandShortcut: true,
-            });
+        if (!editorInstance) {
+            const initializeEditor = async () => {
+                const { Editor } = await import('@toast-ui/editor');
+                const instance = new Editor({
+                    el: editorRef.current! as unknown as HTMLElement,
+                    initialValue: isEditedContent || 'Your result will appear here',
+                    initialEditType: 'wysiwyg',
+                    theme: editorTheme,
+                    height: '400px',
+                    useCommandShortcut: true,
+                });
 
-            instance.on('change', () => {
-                const markdown = instance?.getMarkdown();
-                if (markdown !== isEditedContent) {
-                    setIsEditedContent(markdown ?? '');
-                }
-            });
+                instance.on('change', () => {
+                    const markdown = instance.getMarkdown();
+                    if (markdown !== isEditedContent) {
+                        setIsEditedContent(markdown ?? '');
+                    }
+                });
 
-            setEditorInstance(instance);
-        };
+                setEditorInstance(instance);
+            };
 
-        void initializeEditor();
-    }, [editorTheme, isEditedContent]);
+            void initializeEditor();
+        }
+    }, [editorInstance, editorTheme, isEditedContent]);
 
     useEffect(() => {
         if (editorInstance && typeof editorInstance.setMarkdown === 'function') {
