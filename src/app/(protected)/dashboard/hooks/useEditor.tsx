@@ -12,15 +12,27 @@ const useEditor = (value: string) => {
     const [editorInstance, setEditorInstance] = useState<Editor | null>(null);
     const [editorTheme, setEditorTheme] = useState<'light' | 'dark'>('light');
     const [isEditedContent, setIsEditedContent] = useState(value);
+    // Handle theme changes after hydration
     useEffect(() => {
-        setEditorTheme(theme === 'dark' ? 'dark' : 'light');
+        if (theme === 'system') {
+            // If the theme is 'system', use the user's system preference
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+            setEditorTheme(systemTheme); // Set editor theme based on system preference
+        } else if (theme === 'dark' || theme === 'light') {
+            // If the theme is not 'system', directly use it
+            setEditorTheme(theme);
+        }
     }, [theme]);
+
+    // Update the editor content when the `value` prop changes
     useEffect(() => {
         setIsEditedContent(value);
     }, [value]);
+
     useEffect(() => {
         let instance: Editor | null = null;
-
         const initializeEditor = async () => {
             const { Editor } = await import('@toast-ui/editor');
             instance = new Editor({
@@ -43,12 +55,6 @@ const useEditor = (value: string) => {
         };
 
         void initializeEditor();
-
-        return () => {
-            // @ts-expect-error any
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-            instance?.destroy(); // Clean up previous instance on re-render
-        };
     }, [editorTheme, isEditedContent]);
 
     useEffect(() => {
