@@ -15,12 +15,11 @@ interface IProps extends ITemplates {
 }
 const useTemplateForm = (props: IProps) => {
     const { fromFields, getOutput, slug, prompt, storedFormData, savedAiResponse } = props;
-    const [aiResponeData, setAiResponeData] = useState({
+    const [aiResponseData, setAiResponseData] = useState({
         ai_response: savedAiResponse ?? '',
         form_data: storedFormData ?? '',
         template_slug: slug ?? '',
     });
-
     const dynamicSchema = createSchema(fromFields);
 
     const storedFormDataJson =
@@ -34,7 +33,7 @@ const useTemplateForm = (props: IProps) => {
         {} as Record<string, string>,
     );
 
-    const defaultValues = storedFormDataJson ? storedFormDataJson : dynamicFields;
+    const defaultValues = storedFormDataJson || dynamicFields;
 
     const form = useForm<TTemplateFromSchema>({
         resolver: zodResolver(dynamicSchema),
@@ -61,7 +60,7 @@ const useTemplateForm = (props: IProps) => {
                 return;
             }
 
-            setAiResponeData({
+            setAiResponseData({
                 ai_response: aiResponse,
                 form_data: formData,
                 template_slug: slug,
@@ -74,7 +73,7 @@ const useTemplateForm = (props: IProps) => {
             };
         }
     };
-    return { form, handleSubmit, control, onSubmit, isSubmitting, fromFields, aiResponeData };
+    return { form, handleSubmit, control, onSubmit, isSubmitting, fromFields, aiResponseData };
 };
 
 export default useTemplateForm;
