@@ -1,9 +1,9 @@
-import BackgroundShape from '@/components/core/Background';
-import React from 'react';
-import { ClerkProvider } from '@clerk/nextjs';
-import { MobileSidebar, Sidebar } from './dashboard/components';
 import OnChangeProvider from '@/providers/serch-result-Provider';
+import { ClerkProvider } from '@clerk/nextjs';
+import React from 'react';
 import { Toaster } from '@/components/ui/sonner';
+import BackgroundShape from '@/components/core/Background';
+import { MobileSidebar, Sidebar } from './dashboard/components';
 
 const PublicLayout = ({ children }: { children: React.ReactNode }) => {
     return (

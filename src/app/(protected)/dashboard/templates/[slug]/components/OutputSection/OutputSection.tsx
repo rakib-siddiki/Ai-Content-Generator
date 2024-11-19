@@ -9,9 +9,9 @@ import { useEditor } from '@/app/(protected)/dashboard/hooks';
 interface IProps {
     aiOutput: string;
     handleSaveData: (data?: string) => Promise<void>;
-    isSaveing: boolean;
+    isSaving: boolean;
 }
-const OutputSection: FC<IProps> = ({ aiOutput, handleSaveData, isSaveing }) => {
+const OutputSection: FC<IProps> = ({ aiOutput, handleSaveData, isSaving }) => {
     const { editorRef, isEditedContent } = useEditor(aiOutput);
 
     return (
@@ -19,7 +19,7 @@ const OutputSection: FC<IProps> = ({ aiOutput, handleSaveData, isSaveing }) => {
             <div className='flex justify-between items-center mb-3'>
                 <h2 className=' text-lg font-medium'>Your Result</h2>
                 <Button onClick={() => handleSaveData(isEditedContent)}>
-                    {isSaveing ? (
+                    {isSaving ? (
                         <>
                             <Icons.Loader className='mr-1 size-4 animate-spin' /> Saveing...
                         </>

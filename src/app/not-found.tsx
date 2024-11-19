@@ -14,12 +14,8 @@ const NotFoundPage = () => {
             />
             <div className='container hidden lg:block'>
                 <div className='text-center'>
-                    <h2 className='mb-6 text-9xl font-bold leading-none'>
-                        404
-                    </h2>
-                    <p className='text-4xl opacity-80 xl:text-5xl'>
-                        Page not Available!
-                    </p>
+                    <h2 className='mb-6 text-9xl font-bold leading-none'>404</h2>
+                    <p className='text-4xl opacity-80 xl:text-5xl'>Page not Available!</p>
                     <Link
                         href='/'
                         className='mt-4 inline-block p-2 text-2xl font-bold hover:underline'

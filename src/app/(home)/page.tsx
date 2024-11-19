@@ -1,5 +1,4 @@
-import { Icons } from '@/components/core';
-import BackgroundShape from '@/components/core/Background';
+import Link from 'next/link';
 import {
     Card,
     CardContent,
@@ -8,7 +7,8 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import Link from 'next/link';
+import { Icons } from '@/components/core';
+import BackgroundShape from '@/components/core/Background';
 import { HOME_CARD } from '../static';
 
 export default function Home() {

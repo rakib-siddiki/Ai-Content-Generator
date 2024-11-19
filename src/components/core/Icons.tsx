@@ -1,18 +1,18 @@
 import {
-    LucideProps,
-    Moon,
-    SunMedium,
     ChevronRight,
     CircleUser,
+    Copy,
+    History,
     Home,
+    Loader,
+    LucideProps,
     Menu,
-    Receipt,
+    Moon,
     Package2,
+    Receipt,
     Search,
     Settings,
-    History,
-    Loader,
-    Copy,
+    SunMedium,
 } from 'lucide-react';
 
 export const Icons = {

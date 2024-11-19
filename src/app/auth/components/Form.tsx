@@ -1,6 +1,6 @@
+import * as Clerk from '@clerk/elements/common';
 import React, { FC, ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
-import * as Clerk from '@clerk/elements/common';
 import {
     Card,
     CardContent,

@@ -1,12 +1,12 @@
 'use client';
+
 import * as Clerk from '@clerk/elements/common';
 import * as SignIn from '@clerk/elements/sign-in';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-
 import { Icons } from '@/components/core';
-import Form from '../../components/Form';
 import { SigninVerification } from '../../components';
+import Form from '../../components/Form';
 
 export default function SignUpPage() {
     return (

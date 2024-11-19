@@ -1,9 +1,10 @@
 'use client';
-import { SIDEBAR_NAV_MENUS } from '@/app/static';
-import { cn } from '@/lib/utils';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
+import { cn } from '@/lib/utils';
+import { SIDEBAR_NAV_MENUS } from '@/app/static';
 
 const SidebarNavMenu = () => {
     const pathname = usePathname();

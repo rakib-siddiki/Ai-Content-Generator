@@ -33,13 +33,13 @@ const TemplateContainer: FC<IProps> = ({ slug, savedAiResponse, storedFormData }
         setAiOutput(output);
     };
 
-    const { aiResponeData, ...rest } = useTemplateForm({
+    const { aiResponseData, ...rest } = useTemplateForm({
         ...template,
         getOutput: handleOutput,
         storedFormData,
         savedAiResponse: aiOutput,
     });
-    const { handleSaveData, isSaveing } = useSaveToDB({ aiResponeData });
+    const { handleSaveData, isSaving } = useSaveToDB({ aiResponseData });
 
     return (
         <main className='p-4'>
@@ -54,7 +54,7 @@ const TemplateContainer: FC<IProps> = ({ slug, savedAiResponse, storedFormData }
                 </div>
                 <div className='size-full w-full shadow-lg lg:w-3/5'>
                     <OutputSection
-                        isSaveing={isSaveing}
+                        isSaving={isSaving}
                         handleSaveData={handleSaveData}
                         aiOutput={aiOutput}
                     />

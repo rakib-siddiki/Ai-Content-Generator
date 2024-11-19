@@ -1,9 +1,11 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { TemplateCard } from '.';
-import { TEMPLATES_DATA } from '@/app/static/templaets';
-import Link from 'next/link';
+
 import { useOnSearch } from '@/providers/serch-result-Provider';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { TEMPLATES_DATA } from '@/app/static/templaets';
+import { TemplateCard } from '.';
+
 const Templates = () => {
     const [templatesList, setTemplatesList] = useState(TEMPLATES_DATA);
     const { value } = useOnSearch();

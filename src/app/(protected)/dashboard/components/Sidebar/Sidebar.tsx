@@ -1,8 +1,7 @@
-import { Icons } from '@/components/core';
 import Link from 'next/link';
 import React from 'react';
-import { UpgradeCard } from '.';
-import { SidebarNavMenu } from '.';
+import { Icons } from '@/components/core';
+import { SidebarNavMenu, UpgradeCard } from '.';
 
 const Sidebar = () => {
     return (

@@ -1,4 +1,7 @@
+import * as Clerk from '@clerk/elements/common';
+import * as SignIn from '@clerk/elements/sign-in';
 import React, { FC } from 'react';
+import { Button } from '@/components/ui/button';
 import {
     Card,
     CardContent,
@@ -7,10 +10,8 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import * as Clerk from '@clerk/elements/common';
-import * as SignIn from '@clerk/elements/sign-in';
 import { Icons } from '@/components/core';
-import { Button } from '@/components/ui/button';
+
 interface IProps {
     isGlobalLoading: boolean;
 }

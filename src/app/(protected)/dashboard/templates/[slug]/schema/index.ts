@@ -1,5 +1,5 @@
-import { ITemplates } from '@/app/static/templaets';
 import { z, ZodObject, ZodRawShape } from 'zod';
+import { ITemplates } from '@/app/static/templaets';
 
 export const createSchema = (fields: ITemplates['fromFields']): ZodObject<ZodRawShape> => {
     const shape = fields.reduce((acc, field) => {

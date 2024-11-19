@@ -1,3 +1,4 @@
+import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 import React from 'react';
 import { Button } from '@/components/ui/button';
@@ -5,7 +6,6 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Icons, ThemeSwitcher } from '@/components/core';
 import { SidebarNavMenu, UpgradeCard } from '.';
 import { Search } from '..';
-import { UserButton } from '@clerk/nextjs';
 
 const MobileSidebar = () => {
     return (

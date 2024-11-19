@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import React, { FC } from 'react';
 import TemplateContainer from './components/TemplateContainer';
+
 interface IProps {
     params: { slug: string };
 }

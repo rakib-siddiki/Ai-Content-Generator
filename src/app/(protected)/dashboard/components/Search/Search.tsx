@@ -1,8 +1,9 @@
 'use client';
-import { Icons } from '@/components/core';
-import { Input } from '@/components/ui/input';
+
 import { useOnSearch } from '@/providers/serch-result-Provider';
 import React from 'react';
+import { Input } from '@/components/ui/input';
+import { Icons } from '@/components/core';
 
 const Search = () => {
     const { value, handleOnChange } = useOnSearch();

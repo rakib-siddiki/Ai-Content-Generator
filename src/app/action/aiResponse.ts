@@ -13,7 +13,7 @@ type TData = {
     form_data: string;
     template_slug: string;
 };
-export const saveAiRespone = async (data: TData) => {
+export const saveAiResponse = async (data: TData) => {
     try {
         const { ai_response, form_data, template_slug } = data;
         if (typeof ai_response !== 'string') {

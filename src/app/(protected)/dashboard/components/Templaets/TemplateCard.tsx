@@ -1,9 +1,10 @@
 'use client';
-import { ITemplates } from '@/app/static/templaets';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
 import React, { FC } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icons } from '@/components/core';
+import { ITemplates } from '@/app/static/templaets';
 
 interface IProps extends ITemplates {}
 const TemplateCard: FC<IProps> = ({ title, icon, description }) => {

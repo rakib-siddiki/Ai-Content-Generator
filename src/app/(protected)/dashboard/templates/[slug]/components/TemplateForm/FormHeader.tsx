@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ITemplates } from '@/app/static/templaets';
+
 interface IProps extends ITemplates {}
 const FormHeader: FC<IProps> = ({ title, icon, description }) => {
     return (

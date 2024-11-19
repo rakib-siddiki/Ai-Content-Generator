@@ -1,5 +1,7 @@
 'use client';
+
 import React, { createContext, useCallback, useContext, useMemo } from 'react';
+
 interface TOnSearchContextType {
     value: string;
     handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

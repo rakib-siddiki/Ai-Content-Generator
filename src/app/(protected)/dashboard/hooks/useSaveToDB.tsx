@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { saveAiRespone } from '@/app/action/aiRespone';
+import { saveAiResponse } from '@/app/action/aiResponse';
 
 interface IProps {
-    aiResponeData: {
+    aiResponseData: {
         ai_response: string;
         form_data: string;
         template_slug: string;
     };
 }
 
-const useSaveToDB = ({ aiResponeData }: IProps) => {
-    const [isSaveing, setIsSaveing] = useState<boolean>(false);
+const useSaveToDB = ({ aiResponseData }: IProps) => {
+    const [isSaving, setIsSaving] = useState<boolean>(false);
     const handleSaveData = async (isEditedContent?: string) => {
-        const { ai_response, form_data, template_slug } = aiResponeData;
-        const aiResponeModifiedData = isEditedContent ? isEditedContent : ai_response;
-        if (!aiResponeModifiedData || !form_data || !template_slug) {
+        const { ai_response, form_data, template_slug } = aiResponseData;
+        const aiResponseModifiedData = isEditedContent || ai_response;
+        if (!aiResponseModifiedData || !form_data || !template_slug) {
             toast('No data to save', {
                 style: {
                     background: 'red',
@@ -25,10 +25,10 @@ const useSaveToDB = ({ aiResponeData }: IProps) => {
             return;
         }
         try {
-            setIsSaveing(true);
-            const savedData = await saveAiRespone({
-                ...aiResponeData,
-                ai_response: aiResponeModifiedData,
+            setIsSaving(true);
+            const savedData = await saveAiResponse({
+                ...aiResponseData,
+                ai_response: aiResponseModifiedData,
             });
             if (savedData && 'command' in savedData && savedData.command === 'INSERT') {
                 toast('AI Response saved successfully', {
@@ -54,10 +54,10 @@ const useSaveToDB = ({ aiResponeData }: IProps) => {
                 },
             });
         } finally {
-            setIsSaveing(false);
+            setIsSaving(false);
         }
     };
-    return { handleSaveData, isSaveing };
+    return { handleSaveData, isSaving };
 };
 
 export default useSaveToDB;
