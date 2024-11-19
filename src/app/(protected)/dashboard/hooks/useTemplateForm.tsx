@@ -68,9 +68,23 @@ const useTemplateForm = (props: IProps) => {
 
             getOutput(aiResponse);
         } catch (error) {
-            return {
-                error: 'An error occurred while generating AI response',
-            };
+            // Handle specific 504 Gateway Timeout error
+            if (error instanceof Error && error.message.includes('504')) {
+                toast('The AI service timed out. Please try again later.', {
+                    style: {
+                        background: 'orange',
+                        color: 'white',
+                    },
+                });
+            } else {
+                // Generic error handling
+                toast('An error occurred while generating AI response', {
+                    style: {
+                        background: 'red',
+                        color: 'white',
+                    },
+                });
+            }
         }
     };
     return { form, handleSubmit, control, onSubmit, isSubmitting, fromFields, aiResponseData };
